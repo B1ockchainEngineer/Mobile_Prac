@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.lemonade
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -23,15 +23,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.myapplication.ui.theme.MyApplicationTheme
+import com.example.lemonade.ui.theme.LemonadeTheme
 import java.lang.Math.random
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MyApplicationTheme {
-            
+            LemonadeTheme {
+                LemonApp()
             }
         }
     }
@@ -82,15 +82,19 @@ fun LemonWithWordsAndImage(modifier: Modifier = Modifier) {
         ) {
             Button(onClick = { if(click ==4) click = 1 else click++  })
             {
-                Image(painter = painterResource(id = picture), contentDescription = "1")
+                Column {
 
-                Text(text = stringResource(id = textMsg))
+                    Image(painter = painterResource(id = picture), contentDescription = "1")
+
+                    Text(text = stringResource(id = textMsg))
+                }
             }
         }
     }
 
 
 }
+
 
 
 
