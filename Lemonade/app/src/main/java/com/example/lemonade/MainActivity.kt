@@ -1,9 +1,11 @@
-package com.example.lemonade
+package com.example.myapplication
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.wrapContentSize
@@ -21,51 +23,83 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.lemonade.ui.theme.LemonadeTheme
+import com.example.myapplication.ui.theme.MyApplicationTheme
 import java.lang.Math.random
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            LemonadeTheme {
-                LemonApp()
+            MyApplicationTheme {
+            
             }
         }
     }
 }
 
 @Composable
-fun LemonWithWordsAndImage(modifier : Modifier = Modifier) {
+fun LemonWithWordsAndImage(modifier: Modifier = Modifier) {
     var click by remember {
         mutableStateOf(1)
     }
-
-    var pic
-
-    val trial = when(click){
-        1 -> {R.drawable.lemon_tree R.string.UI1}
-        2 -> R.drawable.lemon_squeeze
-        3 -> R.drawable.lemon_drink
-        4 -> R.drawable.lemon_restart
-        else -> ""
+    var picture by remember {
+        mutableStateOf(R.drawable.lemon_tree)
     }
 
-    Column {
-        Button(onClick = {click += 1} )
-        {
-            Image(painter = painterResource(id = trial), contentDescription = "1")
+    var textMsg by remember {
+        mutableStateOf(R.string.UI1)
+    }
+
+
+    when (click) {
+        1 -> {
+            picture = R.drawable.lemon_tree
+            textMsg = R.string.UI1
+        }
+
+        2 -> {
+            picture = R.drawable.lemon_squeeze
+            textMsg = R.string.UI2
+        }
+
+        3 -> {
+            picture = R.drawable.lemon_drink
+            textMsg = R.string.UI3
+        }
+
+        4 -> {
+            picture = R.drawable.lemon_restart
+            textMsg = R.string.UI4
+        }
+
+
+    }
+
+    Box(modifier = modifier) {
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+            Button(onClick = { if(click ==4) click = 1 else click++  })
+            {
+                Image(painter = painterResource(id = picture), contentDescription = "1")
+
+                Text(text = stringResource(id = textMsg))
+            }
         }
     }
 
 
 }
 
+
+
 @Preview(showBackground = true)
 @Composable
 fun LemonApp() {
-    LemonWithWordsAndImage(modifier = Modifier
-        .fillMaxSize()
-        .wrapContentSize(Alignment.Center)
+    LemonWithWordsAndImage(
+        modifier = Modifier
+            .fillMaxSize()
+            .wrapContentSize(Alignment.Center)
     )
 }
