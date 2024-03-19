@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Art Space</string>
+    <string name="previous">Previous</string>
+    <string name="next">Next</string>
+    <string name="btc">BTC</string>
+    <string name="eth">ETH</string>
+    <string name="sol">SOL</string>
+    <string name="bnb">BNB</string>
+    <string name="sat">Satoshi Nakamoto</string>
+    <string name="vit">Vitalik Buterin</string>
+    <string name="ana">Anatoly Yakovenko</string>
+    <string name="cz">Zhao Chang Peng</string>
+    <string name="btcYear">2009</string>
+    <string name="ethYear">2013</string>
+    <string name="solYear">2020</string>
+    <string name="bnbYear">2017</string>
+</resources>
